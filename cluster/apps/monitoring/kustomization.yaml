@@ -14,5 +14,5 @@ resources:
   - thanos
   - kured
   - influxdb
-  - uptime-kuma
+#  - uptime-kuma
 #  - omada-exporter
