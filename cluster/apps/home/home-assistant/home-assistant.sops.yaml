@@ -1,0 +1,34 @@
+# yamllint disable
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home
+stringData:
+    HASS_DARKSKY_API_KEY: ENC[AES256_GCM,data:ZUkRlESROE96AQ+iHYISf0GcdmuyPoGRT5kwQwT0I5E=,iv:ux54Xyz/2hkh2GK85ze+EZSHctn5fOyKmjQtH/3gpR4=,tag:mbg6bQ4bLmns9/FKfEHw6g==,type:str]
+    HASS_ECOBEE_API_KEY: ENC[AES256_GCM,data:HMcj7kudUL0KPXsHb7bLVyfru8nESHEto2b9UK+XSR0=,iv:NIrP25Aj4sGvPOn90+hYgEZ4L+56cP7Macy7hAyIbl0=,tag:1/BVS/sq/i1+td7SEOldJA==,type:str]
+    HASS_ELEVATION: ENC[AES256_GCM,data:EnGm,iv:FA8X2UD1NAfhmMTjpXUBcQNMVq5i8CzOHH6lLMJvlhk=,tag:XR7em4BYOd2g/Gf4NGlJrA==,type:str]
+    HASS_LATITUDE: ENC[AES256_GCM,data:DDaDTgAYogzv,iv:+aDaxHo9o7J3Lg/NzE2B/oYGkwWQNUU7l/q1/gAotoU=,tag:IgHoomxod1ShjZPHTR81MA==,type:str]
+    HASS_LONGITUDE: ENC[AES256_GCM,data:+XkSjccjCjEzSg==,iv:+x/Hg0zhO6lKMJeSEoLIR6GmorXgYIVkkjfdwcu7lVU=,tag:ESwj6Nh1Y+vBLeOpcvyWSw==,type:str]
+    HASS_MQTT_PASSWORD: ENC[AES256_GCM,data:mUPemtuxNxs+oTw=,iv:gCHWcRINeyfoKx9L1OwaI6Qb4djZ3KuCF3MJFh2lTfE=,tag:qLkzj2cHmWZ4GEGtRjB8Qw==,type:str]
+    HASS_MQTT_USERNAME: ENC[AES256_GCM,data:9dV0dxO/IIs=,iv:z9Ad32w5TRmZoD3zKzsL9szON7UY+ZjrlnKr7P5EDuk=,tag:xhEcj5rwwmBmztDDt330mA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1ysf5pwfe364d7yum0ulukj4475umzjlhcch9jeyy3j4geqvkq3rsw9jrk7
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjVDhkblhqNm1EQjd5STVU
+            UjV0SjZhc3BVT21DRklmeHd2b004L1JNRndRCitkUEpUU3RaaHE2dHJoY1Y1Mjl0
+            M3NlNEd2STA0bzg5ZlJtekIwczVndDgKLS0tIENoNnpsWHdpWDRPemttY0dBaDVO
+            eVJyZDhPRi9HWmRLckE0R3pBZWhqbW8KxT5bmxzj0oPRBm/jiAORjepqvnN1Cqf2
+            /wOLAJFIRwVTNpnlE4jcz0n/ACksCNSJRLGMysvoQPi0QcwwAeyjxg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-12-07T00:20:55Z"
+    mac: ENC[AES256_GCM,data:AurMKRtDDCMZlC+ZIeUZ72/wXWWcMCIpqVhHFKOeVxFf/EV8F+kDyfU2XhO8dq/5N0eb3C2CPDLxED2M0L/JCwDdwwR+CaTadhQx6w0Y0Ek4hyWTf7uHC+Bd0uTwftMns4djLuYxuU2ZYBLDWjfHc0KNP6pmvup2HnC+KJv3CMA=,iv:NlfJSsX+KQMXlAQIM8YyAIU3qJplfwoqgXB5b72z6kQ=,tag:qGvNyf78XUKE9nc8luRNoA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

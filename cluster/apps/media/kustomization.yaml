@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - _pvc
+  - overseerr
+  - prowlarr
+  - tautulli
+  - calibre-web
+  - calibre
+  - qbittorrent
+  - readarr-ebooks
+  - readarr-audio
+  - radarr
+  - sonarr
+  - sonarr-anime
+  - nzbget

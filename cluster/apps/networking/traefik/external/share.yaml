@@ -1,0 +1,41 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "share"
+    kubernetes.io/ingress.class: traefik
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
+  #  hajimari.io/icon:
+  name: share
+  namespace: networking
+spec:
+  rules:
+    - host: share.${SECRET_DOMAIN1}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: share
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - share.${SECRET_DOMAIN1}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: share
+  namespace: networking
+  annotations: {}
+spec:
+  type: ExternalName
+  externalName: 192.168.10.65
+  ports:
+    - port: 80

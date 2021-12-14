@@ -1,0 +1,41 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "plex"
+    kubernetes.io/ingress.class: traefik
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
+  #  hajimari.io/icon:
+  name: plex
+  namespace: networking
+spec:
+  rules:
+    - host: plex.${SECRET_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: plex
+                port:
+                  number: 32400
+  tls:
+    - hosts:
+        - plex.${SECRET_DOMAIN}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: networking
+  annotations: {}
+spec:
+  type: ExternalName
+  externalName: "${NAS_ADDR}"
+  ports:
+    - port: 32400

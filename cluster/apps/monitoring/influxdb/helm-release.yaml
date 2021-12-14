@@ -1,0 +1,46 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: influxdb
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://helm.influxdata.com/
+      chart: influxdb
+      version: 4.10.2
+      sourceRef:
+        kind: HelmRepository
+        name: influxdata-charts
+        namespace: flux-system
+      interval: 15m
+  values:
+    image:
+      repository: "influxdb"
+      tag: "1.8.10-alpine"
+      pullPolicy: IfNotPresent
+    persistence:
+      enabled: true
+      existingClaim: influxdb-data
+    resources:
+      requests:
+        memory: 400Mi
+        cpu: 100m
+      limits:
+        memory: 1Gi
+    service:
+      type: LoadBalancer
+      loadBalancerIP: "${SVC_INFLUXDB_ADDR}"
+    ingress:
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      enabled: true
+      pathType: Prefix
+      ingressClassName: "traefik"
+      hosts:
+        - "influxdb.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "influxdb.${SECRET_DOMAIN}"

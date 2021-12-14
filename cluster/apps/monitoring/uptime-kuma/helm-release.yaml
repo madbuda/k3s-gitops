@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: uptime-kuma
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: uptime-kuma
+      version: 1.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  values:
+    image:
+      # -- image repository
+      repository: louislam/uptime-kuma
+      # -- image tag
+      tag: "1.11.1"
+      # -- image pull policy
+      pullPolicy: IfNotPresent
+    env:
+      # -- Set the container timezone
+      TZ: America/Detroit
+      # -- Set the custom ssl cert path (string)
+      # UPTIME_KUMA_SSL_CERT:
+      # -- Set the custom ssl key path (string)
+      # UPTIME_KUMA_SSL_KEY:
+      # -- Set the frame same-origin policy (int)
+      UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN: 0
+    ingress:
+      main:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "traffic-light"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        enabled: true
+        hosts:
+          - host: status.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - status.${SECRET_DOMAIN}
+    persistence:
+      data:
+        enabled: true
+        existingClaim: uptime-kuma-config
+        mountPath: /app/data
