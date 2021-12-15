@@ -4,7 +4,6 @@ resources:
   - cert-manager.yaml
   - metallb-system.yaml
   - networking.yaml
-#  - longhorn-system.yaml
   - home.yaml
   - monitoring.yaml
   - media.yaml
