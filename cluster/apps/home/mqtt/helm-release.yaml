@@ -9,8 +9,8 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: home-assistant
-      version: 11.2.1
+      chart: mosquittot
+      version: 4.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -19,27 +19,21 @@ spec:
   values:
     image:
       repository: eclipse-mosquitto
-      tag: 2.0.11
+      tag: v2.0.13
     service:
       main:
         type: LoadBalancer
+        annotations:
+          coredns.io/hostname: "mqtt.${SECRET_DOMAIN}"
         loadBalancerIP: "${SVC_EMQX_ADDR}"
-        ports:
-          http:
-            enabled: false
-          mqtt:
-            enabled: true
-            port: 1883
+        externalTrafficPolicy: Local
     persistence:
       data:
         enabled: false
-        mountPath: /mosquitto/data
-        storageClass: "ceph-block"
-        accessMode: ReadWriteOnce
-        size: 500Mi
+        existingClaim: mqtt-data-pvc
       configinc:
-        enabled: false
-        mountPath: /mosquitto/configinc
-        storageClass: "ceph-block"
-        accessMode: ReadWriteOnce
-        size: 100Mi
+        enabled: true
+        type: custom
+        volumeSpec:
+          secret:
+            secretName: mosquitto-config
