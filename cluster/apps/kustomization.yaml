@@ -6,7 +6,7 @@ resources:
   - networking
   - system-upgrade
   - default
-#  - home
+  - home
   - media
   - monitoring
   - kubernetes-dashboard
