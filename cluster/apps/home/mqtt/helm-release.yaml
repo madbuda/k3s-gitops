@@ -27,6 +27,10 @@ spec:
           coredns.io/hostname: "mqtt.${SECRET_DOMAIN}"
         loadBalancerIP: "${SVC_EMQX_ADDR}"
         externalTrafficPolicy: Local
+    auth:
+      enabled: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: mosquitto-config
     persistence:
       data:
         enabled: false
