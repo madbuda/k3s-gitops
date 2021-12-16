@@ -12,6 +12,33 @@ My cluster is [k3s](https://k3s.io/) running on Ubuntu 20.4 Proxmox VMs using th
 
 See my [ansible](./ansible/) directory for my playbooks and roles.
 
+## Cluster components
+
+- [calico](https://docs.projectcalico.org/about/about-calico): For internal cluster networking.
+- [metallb](https://metallb.universe.tf/): For external cluster networking using Layer2 on a sperate vlan.
+- [rook-ceph](https://rook.io/): Provides persistent volumes, allowing any application to consume RBD block storage.
+- [Mozilla SOPS](https://toolkit.fluxcd.io/guides/mozilla-sops/): Encrypts secrets which is safe to store - even to a public repository.
+- [external-dns](https://github.com/kubernetes-sigs/external-dns): Automatically creates DNS records on Cloudflare when I want a ingress to be accessed publicly.
+- [cert-manager](https://cert-manager.io/docs/): Configured to create TLS certs for all ingress services automatically using LetsEncrypt.
+- [traefik](https://traefik.io/traefik/): Ingress controller to expose traffic to pods over DNS.
+
+## Repository structure
+
+The Git repository contains the following directories under `cluster` and are ordered below by how Flux will apply them.
+
+- **base** directory is the entrypoint to Flux
+- **crds** directory contains custom resource definitions (CRDs) that need to exist globally in your cluster before anything else exists
+- **core** directory (depends on **crds**) are important infrastructure applications (grouped by namespace) that should never be pruned by Flux
+- **apps** directory (depends on **core**) is where your common applications (grouped by namespace) could be placed, Flux will prune resources here if they are not tracked by Git anymore
+
+```
+./cluster
+├── ./apps
+├── ./base
+├── ./core
+└── ./crds
+```
+
 ## Hardware
 
 | Device                | Count | OS Disk Size | Data Disk Size              | Ram   | Purpose                           |
