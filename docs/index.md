@@ -1,5 +1,3 @@
-* TOC
-{:toc}
 # Home Cluster
 
 This repository _is_ my home Kubernetes cluster in a declarative state. [Flux](https://github.com/fluxcd/flux2) watches my [cluster](./cluster/) folder and makes the changes to my cluster based on the YAML manifests.
@@ -47,8 +45,8 @@ The Git repository contains the following directories under `cluster` and are or
 | Dell R740xd           | 2     | 2 x 3TB HDD  | 12 x 8TB, 4 x 1TB NVME      | 256GB | Proxmox Hosts                     |
 | ODYSSEY - X86J4105800 | 3     | 256GB NVME   |                             | 8GB   | k3s Masters                       |
 | Ubuntu 20.04 VM       | 4     | 132GB        | 1TB NVMe (rook-ceph)        | 24GB  | k3s Workers                       |
-| SC846 (17-8700 custom)| 1     | 120GB SSD    | 15x8TB, 6x4TB SSD 3x1TB SSD | 32GB  | NAS / Plex                        |
-| Netapp DS4243         | 1     |              | 8x8TB                      |       | DAS w/Dell Compellent Controller  |
+| SC846 (17-8700 custom)| 1     | 120GB SSD    | 12x8TB, 6x4TB SSD 3x1TB SSD | 32GB  | NAS / Plex                        |
+| Netapp DS4243         | 1     |              | 8x8TB                       |       | DAS w/Dell Compellent Controller  |
 
 ## Tools
 
