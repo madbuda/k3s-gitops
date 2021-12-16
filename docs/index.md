@@ -47,7 +47,7 @@ The Git repository contains the following directories under `cluster` and are or
 | ODYSSEY - X86J4105800 | 3     | 256GB NVME   |                             | 8GB   | k3s Masters                       |
 | Ubuntu 20.04 VM       | 4     | 132GB        | 1TB NVMe (rook-ceph)        | 24GB  | k3s Workers                       |
 | SC846 (17-8700 custom)| 1     | 120GB SSD    | 15x8TB, 6x4TB SSD 3x1TB SSD | 32GB  | NAS / Plex                        |
-| Netapp DS4243         | 1     |              | 8x12TB                      |       | DAS w/Dell Compellent Controller  |
+| Netapp DS4243         | 1     |              | 8x8TB                      |       | DAS w/Dell Compellent Controller  |
 
 ## Tools
 
