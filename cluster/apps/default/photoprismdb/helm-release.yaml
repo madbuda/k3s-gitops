@@ -35,7 +35,7 @@ spec:
     service:
       main:
         ports:
-          db:
+          http:
             port: 3306
     persistence:
       config:
