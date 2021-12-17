@@ -19,7 +19,7 @@ spec:
     image:
       repository: ghcr.io/linuxserver/mariadb
       pullPolicy: IfNotPresent
-      tag: "version-110.4.21mariabionic"
+      tag: "latest"
     args:
       - mysqld
       - --transaction-isolation=READ-COMMITTED
