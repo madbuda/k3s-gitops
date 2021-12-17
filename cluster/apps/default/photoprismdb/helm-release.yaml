@@ -28,6 +28,6 @@ spec:
       MYSQL_PASSWORD: photoprism
     persistence:
       config:
-        enabled: enabled
+        enabled: true
         mountPath: /config
         existingClaim: photoprism-db
