@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - _pvc
   - hajimari
-#  - photoprism
-#  - photoprismdb
+  - photoprism
+  - photoprismdb

@@ -8,11 +8,10 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: mariadb
-      version: 1.0.6
+      chart: /charts/kah-common/
       sourceRef:
-        kind: HelmRepository
-        name: nicholaswilde-charts
+        kind: GitRepository
+        name: flux-system
         namespace: flux-system
       interval: 5m
   values:
@@ -22,8 +21,6 @@ spec:
       tag: "latest"
     args:
       - --transaction-isolation=READ-COMMITTED
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
       - --max-connections=512
       - --innodb-rollback-on-timeout=OFF
       - --innodb-lock-wait-timeout=50
@@ -33,6 +30,8 @@ spec:
       MYSQL_DATABASE: photoprism
       MYSQL_USER: photoprism
       MYSQL_PASSWORD: "${MYQSL_PASS}"
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
     persistence:
       config:
         enabled: true
