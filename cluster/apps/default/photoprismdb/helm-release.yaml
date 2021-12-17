@@ -20,7 +20,7 @@ spec:
       repository: ghcr.io/linuxserver/mariadb
       pullPolicy: IfNotPresent
       tag: "version-110.4.21mariabionic"
-    command:
+    args:
       - mysqld
       - --transaction-isolation=READ-COMMITTED
       - --character-set-server=utf8mb4
