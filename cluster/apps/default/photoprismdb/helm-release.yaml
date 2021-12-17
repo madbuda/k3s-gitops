@@ -31,4 +31,5 @@ spec:
         - --innodb-rollback-on-timeout=OFF
         - --innodb-lock-wait-timeout=50
     persistence:
+      enabled: true
       existingClaim: photoprism-db
