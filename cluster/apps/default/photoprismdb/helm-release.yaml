@@ -24,6 +24,7 @@ spec:
       - --max-connections=512
       - --innodb-rollback-on-timeout=OFF
       - --innodb-lock-wait-timeout=50
+    nameOverride: photoprismdb
     env:
       TZ: America/Detroit
       MYSQL_ROOT_PASSWORD: "${MYQSL_PASS}"
