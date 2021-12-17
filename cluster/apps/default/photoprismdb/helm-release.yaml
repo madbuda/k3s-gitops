@@ -20,6 +20,7 @@ spec:
       repository: ghcr.io/linuxserver/mariadb
       pullPolicy: IfNotPresent
       tag: "version-110.4.21mariabionic"
+    command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
     env:
       TZ: America/Detroit
       MYSQL_ROOT_PASSWORD: "${FOUNDRY_ADMIN_KEY}"
