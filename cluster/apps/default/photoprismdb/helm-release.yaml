@@ -33,8 +33,10 @@ spec:
       MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
     service:
-      port:
-        port: 3306
+      main:
+        ports:
+          db:
+            port: 3306
     persistence:
       config:
         enabled: true
