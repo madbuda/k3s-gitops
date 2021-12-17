@@ -2,15 +2,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: foundryvtt
+  name: photoprism
   namespace: default
 spec:
   interval: 5m
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: foundryvtt
-      version: 3.1.0
+      chart: photoprism
+      version: 6.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -18,33 +18,36 @@ spec:
       interval: 5m
   values:
     image:
-      repository: felddy/foundryvtt
-      tag: 0.8.8
+      repository: photoprism/photoprism
+      tag: "20211215"
     env:
       TZ: "America/Detroit"
-      FOUNDRY_PASSWORD: "${FOUNDRY_PASSWORD}"
-      FOUNDRY_USERNAME: "${FOUNDRY_USERNAME}"
-      FOUNDRY_ADMIN_KEY: "${FOUNDRY_ADMIN_KEY}"
+      PHOTOPRISM_STORAGE_PATH: /photoprism/storage
+      PHOTOPRISM_ORIGINALS_PATH: /data/photos
+      PHOTOPRISM_ADMIN_PASSWORD: "${FOUNDRY_ADMIN_KEY}"
+      PHOTOPRISM_PUBLIC: "false"
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "eye-circle"
         hosts:
-          - host: "vtt.${SECRET_DOMAIN}"
+          - host: "photos.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "vtt.${SECRET_DOMAIN}"
+              - "photos.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
-        existingClaim: foundryvtt-config
+        existingClaim: photoprism-config
+        mountPath: /photoprism/storage
+      data:
+        enabled: true
+        existingClaim: media-frank-pvc
         mountPath: /data
