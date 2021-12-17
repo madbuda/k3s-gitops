@@ -16,20 +16,18 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    auth:
-      rootPassword: "${FOUNDRY_ADMIN_KEY}"
-      database: photoprism
-      username: photoprism
-      password: photoprism
-    primary:
-      args:
-        - mysqld
-        - --transaction-isolation=READ-COMMITTED
-        - --character-set-server=utf8mb4
-        - --collation-server=utf8mb4_unicode_ci
-        - --max-connections=512
-        - --innodb-rollback-on-timeout=OFF
-        - --innodb-lock-wait-timeout=50
+    image:
+      repository: ghcr.io/linuxserver/mariadb
+      pullPolicy: IfNotPresent
+      tag: "version-110.4.21mariabionic"
+    env:
+      TZ: America/Detroit
+      MYSQL_ROOT_PASSWORD: "${FOUNDRY_ADMIN_KEY}"
+      MYSQL_DATABASE: photoprism
+      MYSQL_USER: photoprism
+      MYSQL_PASSWORD: photoprism
     persistence:
-      enabled: true
-      existingClaim: photoprism-db
+      config:
+        enabled: enabled
+        mountPath: /config
+        existingClaim: photoprism-db
