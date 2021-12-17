@@ -23,10 +23,10 @@ spec:
     command: mysqld --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
     env:
       TZ: America/Detroit
-      MYSQL_ROOT_PASSWORD: "${FOUNDRY_ADMIN_KEY}"
+      MYSQL_ROOT_PASSWORD: "${MYQSL_PASS}"
       MYSQL_DATABASE: photoprism
       MYSQL_USER: photoprism
-      MYSQL_PASSWORD: photoprism
+      MYSQL_PASSWORD: "${MYQSL_PASS}"
     persistence:
       config:
         enabled: true
