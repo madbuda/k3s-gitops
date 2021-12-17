@@ -20,6 +20,8 @@ spec:
       repository: yobasystems/alpine-mariadb
       pullPolicy: IfNotPresent
       tag: "latest"
+    secret:
+      MYSQL_ROOT_PASSWORD: "${MYQSL_PASS}"
     args:
       - --transaction-isolation=READ-COMMITTED
       - --character-set-server=utf8mb4
