@@ -39,5 +39,5 @@ spec:
     persistence:
       config:
         enabled: true
-        mountPath: /config
+        mountPath: /var/lib/mysql
         existingClaim: photoprism-db
