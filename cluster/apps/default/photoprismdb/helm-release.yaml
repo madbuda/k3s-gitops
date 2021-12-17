@@ -17,7 +17,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: yobasystems/alpine-mariadb
+      repository: ghcr.io/linuxserver/mariadb
       pullPolicy: IfNotPresent
       tag: "latest"
     secret:
