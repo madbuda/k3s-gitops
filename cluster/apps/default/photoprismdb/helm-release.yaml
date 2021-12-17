@@ -32,6 +32,9 @@ spec:
       MYSQL_PASSWORD: "${MYQSL_PASS}"
       MYSQL_CHARSET: utf8mb4
       MYSQL_COLLATION: utf8mb4_unicode_ci
+    service:
+      port:
+        port: 3306
     persistence:
       config:
         enabled: true
