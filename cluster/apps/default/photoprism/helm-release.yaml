@@ -49,5 +49,5 @@ spec:
         mountPath: /photoprism/storage
       data:
         enabled: true
-        existingClaim: media-frank-pvc
+        existingClaim: default-frank-pvc
         mountPath: /data
