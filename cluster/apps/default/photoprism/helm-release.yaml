@@ -26,6 +26,7 @@ spec:
       PHOTOPRISM_ORIGINALS_PATH: /data/photos
       PHOTOPRISM_ADMIN_PASSWORD: "${FOUNDRY_ADMIN_KEY}"
       PHOTOPRISM_PUBLIC: "false"
+      PHOTOPRISM_IMPORT_PATH: /data/download/photo-import
     ingress:
       main:
         enabled: true
