@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: photoprism-config
+  name: photoprism-db
   namespace: default
 spec:
   accessModes:
