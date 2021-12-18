@@ -19,22 +19,39 @@ spec:
   dependsOn:
     - name: mqtt
       namespace: home
+
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2021.11.5
+      tag: 2021.12.3
+      nameOverride: "home-assistant"
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: home-assistant-secrets
+
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     env:
       TZ: "America/Detroit"
     envFrom:
       - secretRef:
           name: home-assistant
+
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
+
     service:
       main:
         type: LoadBalancer
         loadBalancerIP: "${SVC_HOME_ASSISTANT_ADDR}"
         externalTrafficPolicy: Local
+
     ingress:
       main:
         enabled: true
@@ -53,19 +70,28 @@ spec:
         tls:
           - hosts:
               - "ha.${SECRET_DOMAIN}"
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
+
     persistence:
       config:
         enabled: true
         existingClaim: home-assistant-config
-    podAnnotations:
-      secret.reloader.stakater.com/reload: "home-assistant"
+
+    postgresql:
+      enabled: true
+
+      image:
+        repository: bitnami/postgresql
+        tag: 13.5.0
+        pullPolicy: IfNotPresent
+
+      persistence:
+        enabled: true
+        existingClaim: home-assistant-postgresql
+
+      postgresqlUsername: home-assistant
+      postgresqlDatabase: home-assistant
+
+
     addons:
       codeserver:
         enabled: true
@@ -82,6 +108,7 @@ spec:
           - "/config/.vscode"
           - --extensions-dir
           - "/config/.vscode"
+
         ingress:
           enabled: true
           ingressClassName: "traefik"
@@ -97,6 +124,7 @@ spec:
           tls:
             - hosts:
                 - "ha-config.${SECRET_DOMAIN}"
+
         volumeMounts:
           - name: config
             mountPath: /config
@@ -106,3 +134,10 @@ spec:
         memory: 100Mi
       limits:
         memory: 4000Mi
+
+  valuesFrom:
+    - kind: Secret
+      name: home-assistant
+      valuesKey: postgresql_password
+      targetPath: postgresql.postgresqlPassword
+      optional: false

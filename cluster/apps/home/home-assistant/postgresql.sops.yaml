@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant
+    namespace: home
+stringData:
+    postgresql_password: ENC[AES256_GCM,data:asi4B7BcQuKO70w=,iv:ju8Q6DJKzEb4wA8QpNX/UVEddbD57ByUNaiYTLkdN4g=,tag:yqWS1FEN+5Fm/I+9LjExAw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1ysf5pwfe364d7yum0ulukj4475umzjlhcch9jeyy3j4geqvkq3rsw9jrk7
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXRDFNTUJNNm41VzlYdm9h
+            dXBiNFYvMHRSQiszYURjOS9EcmFVOFJmcW4wCnN4ampjemRZSHQ4UWZaemE0aVZ5
+            bXJ1VVJ6U010THBsTU1LSHdYbWhMaEkKLS0tIE1SSVZYSzZ3UndlWDhiUVlyNVdS
+            cGtUMVJVdjhJL3FxS0gySkN2U0g0b2MKtJmygkhLW0LxHr11/COOosKxz1CC8lWX
+            6YQigQ0mK8zlzoFY+wzHXl+OMV/78RsBBL0ZDoUceii519nEWMIuWg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-12-18T03:53:17Z"
+    mac: ENC[AES256_GCM,data:de3XYkL1kcDeipW2bVmSTQJTJ4BDLdmEaGe6Win2kTLlwbYUsbjQbhXkprzGxoI4sbKr9O9FQudngpui2VKItOft7UjijM496Tu+xcBzUvciI17ce7ZPL+y7Uu6pq5UmlmsLCVGfYyyEg9CNCADp9aDhx2Xu8xwEio5C/gCCENo=,iv:cI+ViD2zIfZm6D8aaCMSycMOb1F7GRQbDCtLP9tG544=,tag:SS6zOUo+kykQwg0b3E8Cjg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
