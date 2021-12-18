@@ -57,7 +57,7 @@ spec:
         retain: true
       permit_join: false
       serial:
-        port: /dev/ttyUSB0
+        port: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
       advanced:
         log_output:
           - console
