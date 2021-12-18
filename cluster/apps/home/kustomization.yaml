@@ -7,3 +7,4 @@ resources:
   - node-red
   - homebridge
   - esphome
+  - zwavejs2mqtt
