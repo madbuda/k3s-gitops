@@ -57,7 +57,7 @@ spec:
         retain: true
       permit_join: false
       serial:
-        port: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
+        port: /dev/zigbeestick
       advanced:
         log_output:
           - console
@@ -96,8 +96,8 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
-        mountPath:: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
+        hostPath: /dev/zigbeestick
+        mountPath: /dev/zigbeestick
 
     tolerations:
       - key: "node-role.kubernetes.io/master"
