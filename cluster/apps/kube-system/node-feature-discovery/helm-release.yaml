@@ -15,6 +15,10 @@ spec:
         kind: HelmRepository
         name: node-feature-discovery-charts
         namespace: flux-system
+  tolerations:
+    - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
+      effect: "NoSchedule"
   values:
     worker:
       annotations:
@@ -44,18 +48,13 @@ spec:
           - name: "zwave"
             matchOn:
             - usbId:
-                class: ["02"]
-                vendor: ["0658"]
-                device: ["0200"]
+                vendor: ["10c4"]
+                device: ["8a2a"]
           - name: "intel-gpu"
             matchOn:
             - pciId:
                 class: ["0300"]
                 vendor: ["8086"]
-          - name: "coral-tpu"
-            matchOn:
-            - usbId:
-                vendor: ["1a6e", "18d1"]
           - name: "nvidia-gpu"
             matchOn:
             - pciId:
