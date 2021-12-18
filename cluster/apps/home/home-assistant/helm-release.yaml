@@ -137,7 +137,7 @@ spec:
 
   valuesFrom:
     - kind: Secret
-      name: home-assistant
+      name: home-assistant-pgsql
       valuesKey: postgresql_password
       targetPath: postgresql.postgresqlPassword
       optional: false
