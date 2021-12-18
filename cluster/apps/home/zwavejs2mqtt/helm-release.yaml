@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: zwavejs2mqtt
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      dependsOn:
+        - name: mqtt
+          namespace: home
+
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: zwavejs2mqtt
+      version: 5.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+
+  values:
+    image:
+      repository: ghcr.io/zwave-js/zwavejs2mqtt
+      tag: 6.1.1
+    env:
+      TZ: "America/Detroit"
+    service:
+      main:
+        ports:
+          http:
+            port: 8091
+          websocket:
+            enabled: true
+            port: 3000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "home-assistant"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        hosts:
+          - host: "zwave.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "zwave.${SECRET_DOMAIN}"
+
+    securityContext:
+      privileged: true
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: zwavejs2mqtt-config
+        mountPath: "/usr/src/app/store"
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if00-port0
+        hostPathType: CharDevice
+
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-zwave
+                  operator: In
+                  values:
+                    - "true"
