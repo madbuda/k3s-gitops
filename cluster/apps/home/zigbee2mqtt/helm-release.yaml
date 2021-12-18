@@ -62,28 +62,12 @@ spec:
         adapter: ezsp
 
       advanced:
+        log_level: debug
         log_output:
           - console
-        network_key:
-          - 95
-          - 33
-          - 55
-          - 119
-          - 59
-          - 169
-          - 49
-          - 50
-          - 96
-          - 72
-          - 42
-          - 108
-          - 182
-          - 104
-          - 11
-          - 41
-        pan_id: 5953
+        network_key: GENERATE
+        baudrate: 57600
 
-      # Both of these need to be enabled for the webui
       frontend:
         port: 8080
 
@@ -96,12 +80,10 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config
         mountPath: "/data"
-
-    resources:
-      limits:
-        smarter-devices/ttyUSB1: 1
-      requests:
-        smarter-devices/ttyUSB1: 1
+      usb:
+        enabled: true
+        hostPath: /dev/ttyUSB1
+        mountPath: /dev/ttyUSB1
 
     tolerations:
       - key: "node-role.kubernetes.io/master"
