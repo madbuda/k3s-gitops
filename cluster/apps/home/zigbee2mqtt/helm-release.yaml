@@ -49,15 +49,18 @@ spec:
     config:
       mqtt:
         base_topic: zigbee2mqtt
-        server: "mqtt://mqtt-mosquitto.home"
+        server: "mqtt://mqtt-mosquitto"
         user: "${SECRET_MQTT_USERNAME}"
         password: "${SECRET_MQTT_PASSWORD}"
       homeassistant: true
       device_options:
         retain: true
       permit_join: false
-#      serial:
-#        port: /dev/zigbeestick
+
+      serial:
+        port: "/dev/ttyUSB1"
+        adapter: ezsp
+
       advanced:
         log_output:
           - console
@@ -93,10 +96,12 @@ spec:
         enabled: true
         existingClaim: zigbee2mqtt-config
         mountPath: "/data"
-      usb:
-        enabled: true
-        hostPath: /dev/zigbeestick
-        mountPath: /dev/zigbeestick
+
+    resources:
+      limits:
+        smarter-devices/ttyUSB1: 1
+      requests:
+        smarter-devices/ttyUSB1: 1
 
     tolerations:
       - key: "node-role.kubernetes.io/master"

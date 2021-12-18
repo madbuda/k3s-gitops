@@ -53,18 +53,16 @@ spec:
           - hosts:
               - "zwave.${SECRET_DOMAIN}"
 
-    securityContext:
-      privileged: true
-
     persistence:
       config:
         enabled: true
         existingClaim: zwavejs2mqtt-config
         mountPath: "/usr/src/app/store"
-      usb:
-        enabled: true
-        hostPath: /dev/zwavestick
-        mountPath: /dev/zwavestick
+    resources:
+      limits:
+        smarter-devices/ttyUSB0: 1
+      requests:
+        smarter-devices/ttyUSB0: 1
 
     tolerations:
       - key: "node-role.kubernetes.io/master"
