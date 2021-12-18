@@ -25,3 +25,7 @@ spec:
         nummaxdevices: 1
       - devicematch: ^video[0-9]*$
         nummaxdevices: 1
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
