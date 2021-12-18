@@ -18,6 +18,10 @@ spec:
   values:
     crds:
       enabled: false
+    pluginTolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
     resources:
       requests:
         cpu: 100m
