@@ -57,7 +57,7 @@ spec:
         retain: true
       permit_join: false
       serial:
-        port: /dev/ttyUSB1
+        port: /dev/ttyUSB0
       advanced:
         log_output:
           - console
@@ -97,7 +97,7 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
-        hostPathType: CharDevice
+        mountPath:: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_51501063-if01-port0
 
     tolerations:
       - key: "node-role.kubernetes.io/master"
