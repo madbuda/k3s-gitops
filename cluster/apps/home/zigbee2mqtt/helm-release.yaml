@@ -95,7 +95,6 @@ spec:
         mountPath: "/data"
       usb:
         enabled: true
-        type: hostPath
         hostPath: /dev/zigbeestick
         mountPath: /dev/zigbeestick
 
