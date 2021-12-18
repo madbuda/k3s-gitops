@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - _pvc
   - hajimari
+  - smarter-device-manager
 #  - photoprism
 #  - photoprismdb
