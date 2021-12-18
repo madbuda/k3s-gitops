@@ -8,3 +8,4 @@ resources:
   - homebridge
   - esphome
   - zwavejs2mqtt
+  - zigbee2mqtt
