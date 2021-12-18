@@ -16,11 +16,9 @@ spec:
         name: node-feature-discovery-charts
         namespace: flux-system
   values:
-    master:
+    worker:
       annotations:
-        configmap.reloader.stakater.com/reload: "nfd-master-conf"
-      nodeSelector:
-        node-role.kubernetes.io/master: "true"
+        configmap.reloader.stakater.com/reload: "nfd-worker-conf"
       tolerations:
         - key: "node-role.kubernetes.io/master"
           operator: "Exists"
