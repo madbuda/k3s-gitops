@@ -56,8 +56,8 @@ spec:
       device_options:
         retain: true
       permit_join: false
-      serial:
-        port: /dev/zigbeestick
+#      serial:
+#        port: /dev/zigbeestick
       advanced:
         log_output:
           - console
