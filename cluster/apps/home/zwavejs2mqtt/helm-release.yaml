@@ -8,10 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      dependsOn:
-        - name: mqtt
-          namespace: home
-
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: zwavejs2mqtt
       version: 5.1.0
@@ -20,6 +16,10 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+
+  dependsOn:
+    - name: mqtt
+      namespace: home
 
   values:
     image:
