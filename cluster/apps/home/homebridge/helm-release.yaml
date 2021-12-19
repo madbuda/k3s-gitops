@@ -48,7 +48,8 @@ spec:
         mountPath: "/homebridge"
     config: |
       !/bin/sh
-       npm install homebridge-bond homebridge-bravia-tvos homebridge-hubitat-tonesto7 homebridge-ring
+       npm install homebridge-ring
+       apk add --no-cache ffmpeg ffmpeg-libs libpcap-dev
     resources:
       requests:
         memory: 100Mi
