@@ -44,12 +44,12 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "bookshelf"
         hosts:
-          - host: "ebooks.${SECRET_DOMAIN1}"
+          - host: "books.${SECRET_DOMAIN1}"
             paths:
               - path: /
         tls:
           - hosts:
-              - "ebooks.${SECRET_DOMAIN1}"
+              - "books.${SECRET_DOMAIN1}"
     resources:
       requests:
         memory: 256Mi
