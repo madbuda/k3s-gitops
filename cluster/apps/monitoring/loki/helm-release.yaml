@@ -36,6 +36,7 @@ spec:
     config:
       storage_config:
         aws:
+          s3: s3://us-east-1
           bucketnames: loki
           endpoint: 192.168.44.2:9000
           access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
