@@ -19,6 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/oznu/homebridge
+      tag: latest
     env:
       TZ: "America/Detroit"
       HOMEBRIDGE_CONFIG_UI: 1
