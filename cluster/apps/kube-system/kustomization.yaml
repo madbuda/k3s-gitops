@@ -7,5 +7,5 @@ resources:
   - nfs-subdir-external-provisioner
   - descheduler
   - home-dns
-#  - goldilocks
+  - goldilocks
   - node-feature-discovery
