@@ -46,8 +46,8 @@ spec:
           - name: "zwave"
             matchOn:
             - usbId:
-                vendor: ["10c4"]
-                device: ["8a2a"]
+                vendor: ["0658"]
+                device: ["0200"]
           - name: "intel-gpu"
             matchOn:
             - pciId:
