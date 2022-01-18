@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "20211215"
+      tag: "20220118"
     env:
       TZ: "America/Detroit"
       PHOTOPRISM_STORAGE_PATH: /photoprism/storage
