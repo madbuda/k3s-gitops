@@ -21,7 +21,7 @@ spec:
       # -- image repository
       repository: louislam/uptime-kuma
       # -- image tag
-      tag: "1.11.3"
+      tag: "1.11.4"
       # -- image pull policy
       pullPolicy: IfNotPresent
     env:
