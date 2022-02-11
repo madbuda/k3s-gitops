@@ -81,7 +81,7 @@ spec:
 
       image:
         repository: bitnami/postgresql
-        tag: 13.5.0
+        tag: 14.2.0
         pullPolicy: IfNotPresent
 
       persistence:
